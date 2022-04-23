@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Game Store Admin | Customers</title>
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title" th:text="'#' + ${product.id}">Product Id</h3>
+            <h5 class="card-subtitle" th:text="${product.productName}">Product Name</h5>
+            <p th:text="'Price: ' + ${#numbers.formatCurrency(product.price)}">Price</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
