@@ -49,6 +49,7 @@ sonarqube {
 		property "sonar.projectKey", "jojozhuang_spring-security-login"
 		property "sonar.organization", "jojozhuang"
 		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.sources", "src/main/java,src/main/resources/templates"
 	}
 }
 
