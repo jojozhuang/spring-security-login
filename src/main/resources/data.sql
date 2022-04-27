@@ -18,8 +18,8 @@ INSERT INTO products (product_name, price) values ('XBox S', 649.00);
 INSERT INTO products (product_name, price) values ('Model S', 45999.00);
 INSERT INTO products (product_name, price) values ('Model Y', 76999.00);
 
-INSERT INTO users (username, password, enabled) values ('johnny', 'abc123', true);
-INSERT INTO users (username, password, enabled) values ('admin', 'abc123', true);
+INSERT INTO users (username, password, enabled) values ('johnny', '{bcrypt}$2a$10$1TJR4iu6C8K5ICi3MnD1Cu0nYfzYPo92x81mxqTfmfnruoTrz.dvG', true);
+INSERT INTO users (username, password, enabled) values ('admin', '{bcrypt}$2a$10$1TJR4iu6C8K5ICi3MnD1Cu0nYfzYPo92x81mxqTfmfnruoTrz.dvG', true);
 
 INSERT INTO authorities (username, authority) values ('johnny', 'ROLE_USER');
 INSERT INTO authorities (username, authority) values ('admin', 'ROLE_USER');
