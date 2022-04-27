@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/customers")
-public class CustomerController {
+public class CustomerController extends BaseController {
   private final CustomerRepository customerRepository;
   private final OrderRepository orderRepository;
 
@@ -29,9 +29,9 @@ public class CustomerController {
   @GetMapping
   public String getAllCustomers(Model model) {
     List<Customer> customers = this.customerRepository.findByOrderByNameAsc();
-    model.addAttribute("customers", customers);
-    model.addAttribute("module", "customers");
-    return "customers";
+    model.addAttribute(ATTRIBUTE_KEY_CUSTOMERS, customers);
+    model.addAttribute(ATTRIBUTE_KEY_MODULE, MODULE_CUSTOMERS);
+    return TEMPLATE_NAME_CUSTOMERS;
   }
 
   @GetMapping(path = "/{id}")
@@ -39,15 +39,15 @@ public class CustomerController {
     Optional<Customer> customer = this.customerRepository.findById(customerId);
     if (customer.isEmpty()) {
       throw new ResponseStatusException(
-          HttpStatus.NOT_FOUND, "entity not found"
+          HttpStatus.NOT_FOUND, ERROR_ENTITY_NOT_FOUND
       );
     }
-    model.addAttribute("customer", customer.get());
+    model.addAttribute(ATTRIBUTE_KEY_CUSTOMER, customer.get());
     Iterable<Order> ordersIterable = this.orderRepository.findAllByCustomerId(customer.get().getId());
     List<Order> orders = new ArrayList<>();
     ordersIterable.forEach(orders::add);
-    model.addAttribute("orders", orders);
-    model.addAttribute("module", "customers");
-    return "customer-details";
+    model.addAttribute(ATTRIBUTE_KEY_ORDERS, orders);
+    model.addAttribute(ATTRIBUTE_KEY_MODULE, MODULE_CUSTOMERS);
+    return TEMPLATE_NAME_CUSTOMER_DETAILS;
   }
 }

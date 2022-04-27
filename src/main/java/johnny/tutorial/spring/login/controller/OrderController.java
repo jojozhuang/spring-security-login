@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/orders")
-public class OrderController {
+public class OrderController extends BaseController {
   private final OrderRepository orderRepository;
   private final CustomerRepository customerRepository;
 
@@ -37,8 +37,8 @@ public class OrderController {
       order.setOrderDetails(oi.getItems());
       orders.add(order);
     });
-    model.addAttribute("orders", orders);
-    model.addAttribute("module", "orders");
-    return "orders";
+    model.addAttribute(ATTRIBUTE_KEY_ORDERS, orders);
+    model.addAttribute(ATTRIBUTE_KEY_MODULE, MODULE_ORDERS);
+    return TEMPLATE_NAME_ORDERS;
   }
 }

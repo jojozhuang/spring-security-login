@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
-  List<Product> findByOrderByProductNameAsc();
+  List<Product> findByOrderByIdAsc();
 }

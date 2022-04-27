@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
-public class ProductController {
+public class ProductController extends BaseController {
   private final ProductRepository productRepository;
 
   public ProductController(ProductRepository productRepository) {
@@ -23,10 +23,10 @@ public class ProductController {
 
   @GetMapping
   public String getAllProducts(Model model) {
-    List<Product> products = this.productRepository.findByOrderByProductNameAsc();
-    model.addAttribute("products", products);
-    model.addAttribute("module", "products");
-    return "products";
+    List<Product> products = this.productRepository.findByOrderByIdAsc();
+    model.addAttribute(ATTRIBUTE_KEY_PRODUCTS, products);
+    model.addAttribute(ATTRIBUTE_KEY_MODULE, MODULE_PRODUCTS);
+    return TEMPLATE_NAME_PRODUCTS;
   }
 
   @GetMapping(path = "/{id}")
@@ -34,11 +34,11 @@ public class ProductController {
     Optional<Product> product = this.productRepository.findById(customerId);
     if (product.isEmpty()) {
       throw new ResponseStatusException(
-          HttpStatus.NOT_FOUND, "entity not found"
+          HttpStatus.NOT_FOUND, ERROR_ENTITY_NOT_FOUND
       );
     }
-    model.addAttribute("product", product.get());
-    model.addAttribute("module", "products");
-    return "product-details";
+    model.addAttribute(ATTRIBUTE_KEY_PRODUCT, product.get());
+    model.addAttribute(ATTRIBUTE_KEY_MODULE, MODULE_PRODUCTS);
+    return TEMPLATE_NAME_PRODUCT_DETAILS;
   }
 }
