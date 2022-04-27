@@ -1,7 +1,9 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.0-SNAPSHOT'
+	id 'org.springframework.boot' version '2.6.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'checkstyle'
+	id "org.sonarqube" version "3.3"
 }
 
 group = 'johnny.tutorial'
@@ -16,7 +18,38 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.h2database:h2'
+
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	testCompileOnly 'org.projectlombok:lombok:1.18.22'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.apache.commons:commons-collections4:4.1'
+}
+
+checkstyle {
+	configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+	source ='src/main/java'
+}
+checkstyleTest {
+	source ='src/test/java'
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "jojozhuang_spring-security-login"
+		property "sonar.organization", "jojozhuang"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
 }
 
 tasks.named('test') {
