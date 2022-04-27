@@ -17,3 +17,10 @@ INSERT INTO products (product_name, price) values ('iPhone 13 Pro', 799.00);
 INSERT INTO products (product_name, price) values ('XBox S', 649.00);
 INSERT INTO products (product_name, price) values ('Model S', 45999.00);
 INSERT INTO products (product_name, price) values ('Model Y', 76999.00);
+
+INSERT INTO users (username, password, enabled) values ('johnny', 'abc123', true);
+INSERT INTO users (username, password, enabled) values ('admin', 'abc123', true);
+
+INSERT INTO authorities (username, authority) values ('johnny', 'ROLE_USER');
+INSERT INTO authorities (username, authority) values ('admin', 'ROLE_USER');
+INSERT INTO authorities (username, authority) values ('admin', 'ROLE_ADMIN');
