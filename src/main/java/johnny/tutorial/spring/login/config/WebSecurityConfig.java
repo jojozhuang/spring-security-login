@@ -6,8 +6,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import javax.sql.DataSource;
 
@@ -24,27 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .httpBasic();
   }
 
-  //  @Bean
-  //  @Override
-  //  public UserDetailsService userDetailsService() {
-  //    UserDetails user =
-  //        User.withDefaultPasswordEncoder()
-  //          .username("johnny")
-  //          .password("abc123")
-  //          .roles("USER")
-  //          .build();
-  //    return new InMemoryUserDetailsManager(user);
-  //  }
-
   @Bean
   public UserDetailsService users(DataSource dataSource) {
     return new JdbcUserDetailsManager(dataSource);
   }
-
-  /* // By default, password is encrypted with bcrypt hash algorithm
-  @Bean
-  public static PasswordEncoder getPasswordEncoder() {
-    return NoOpPasswordEncoder.getInstance();
-  }
-  */
 }
