@@ -13,6 +13,7 @@ public abstract class BaseController {
   protected static final String MODULE_ORDERS = "orders";
 
   protected static final String TEMPLATE_NAME_INDEX = "index";
+  protected static final String TEMPLATE_NAME_LOGIN = "login";
   protected static final String TEMPLATE_NAME_CUSTOMERS = "customers";
   protected static final String TEMPLATE_NAME_CUSTOMER_DETAILS = "customer-details";
   protected static final String TEMPLATE_NAME_PRODUCTS = "products";

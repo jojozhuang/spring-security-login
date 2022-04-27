@@ -12,4 +12,9 @@ public class HomeController extends BaseController {
   public String getHome(Model model) {
     return TEMPLATE_NAME_INDEX;
   }
+
+  @GetMapping("/login")
+  public String getLogin() {
+    return TEMPLATE_NAME_LOGIN;
+  }
 }
