@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments :: head(title='Login')"></head>
+<body>
+    <div th:replace="fragments :: header"></div>
+    <div class="container">
+        <h1 class="text-center">Login Page</h1>
+        <div th:if="${param.error}" class="alert alert-danger">Invalid username and password.</div>
+        <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-6">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" autofocus="autofocus">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer th:replace="fragments :: footer"></footer>
+    <script th:replace="fragments :: script"></script>
+</body>
+</html>
